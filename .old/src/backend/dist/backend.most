@@ -1,0 +1,477 @@
+// Version: 1.0.0
+type AchievementEntry__451882068 =
+  {
+    createdAt : Timestamp__301639476;
+    date : Text;
+    description : Text;
+    id : Nat;
+    name : Text
+  };
+type AdmissionOfficer__15106951 =
+  {collegeId : Nat; name : Text; principal : Principal; registeredAt : Int};
+type AlumniMessage__248006930 =
+  {
+    author : Principal;
+    authorName : Text;
+    collegeId : Nat;
+    message : Text;
+    messageId : Nat;
+    timestamp : Int
+  };
+type AnxietyRating__1022533009 =
+  {
+    confidenceScore : Nat;
+    createdAt : Timestamp__301639476;
+    date : Text;
+    id : Nat;
+    worryScore : Nat
+  };
+type ApplicationEntry__283529602 =
+  {
+    collegeName : Text;
+    createdAt : Timestamp__301639476;
+    deadline : ?Text;
+    id : Nat;
+    notes : ?Text;
+    status : ApplicationStatus__543920190;
+    updatedAt : Timestamp__301639476
+  };
+type ApplicationStatus__543920190 =
+  {#accepted; #applied; #deferred; #rejected; #waitlisted};
+type Award__206221593 = {description : Text; title : Text};
+type CelebrationEvent__260258061 =
+  {
+    createdAt : Timestamp__301639476;
+    date : Text;
+    description : Text;
+    id : Nat
+  };
+type CollegeDeadline__1012751481 =
+  {
+    collegeId : Nat;
+    collegeName : Text;
+    deadlineType : Text;
+    dueDate : Int;
+    notes : Text;
+    status : DeadlineStatus__863030513
+  };
+type CollegeId__525060893 = Nat;
+type College__183862834 =
+  {
+    acceptanceRate : Float;
+    country : Text;
+    discordUrl : ?Text;
+    financialAidTier : FinancialAidTier__922794515;
+    housingInfo : Text;
+    id : CollegeId__525060893;
+    location : Text;
+    majorsOffered : [Text];
+    name : Text;
+    redditUrl : ?Text;
+    tuition : Nat;
+    website : Text
+  };
+type Data__80296667<K, V> =
+  {var count : Nat__1040412405; kvs : [var ?(K, V)]};
+type DeadlineStatus__863030513 = {#completed; #missed; #upcoming};
+type DocumentChecklistItem__576112835 =
+  {
+    dueDate : ?Int;
+    id : Nat;
+    name : Text;
+    notes : Text;
+    status : DocumentStatus__430913293
+  };
+type DocumentStatus__430913293 =
+  {#inProgress; #notStarted; #submitted; #verified};
+type EssayDraft__234724396 =
+  {
+    content : Text;
+    draftId : Nat;
+    tags : [Text];
+    timestamp : Timestamp__301639476;
+    title : Text;
+    version : Nat;
+    wordCount : Nat
+  };
+type FinancialAidPreference__729047397 = {#full; #half; #none};
+type FinancialAidTier__922794515 =
+  {#fullRide; #meritOnly; #needBased; #noAid};
+type GpaType__679962695 = {#unweighted; #weighted};
+type Internal__41346355<K, V> =
+  {children : [var ?Node__1000929467<K, V>]; data : Data__80296667<K, V>};
+type InternshipEntry__678313143 =
+  {
+    company : Text;
+    createdAt : Timestamp__301639476;
+    endDate : ?Text;
+    id : Nat;
+    role : Text;
+    skills : [Text];
+    startDate : Text
+  };
+type LeadershipRole__1003394862 =
+  {
+    createdAt : Timestamp__301639476;
+    endDate : ?Text;
+    id : Nat;
+    impact : Text;
+    organization : Text;
+    role : Text;
+    startDate : Text
+  };
+type Leaf__712614010<K, V> = {data : Data__80296667<K, V>};
+type List__529703492<T> =
+  {
+    var blockIndex : Nat__1040412405;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__1040412405
+  };
+type List__560604548<T> = List__529703492<T>;
+type Map__222667396<K, V> = Map__912772452<K, V>;
+type Map__709709801<K, V> =
+  {var root : Node__1000929467<K, V>; var size : Nat__1040412405};
+type Map__912772452<K, V> = Map__709709801<K, V>;
+type MoodCheckIn__645949905 =
+  {
+    createdAt : Timestamp__301639476;
+    date : Text;
+    id : Nat;
+    mood : Nat;
+    moodEmoji : Text;
+    note : Text
+  };
+type Nat__1040412405 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__1000929467<K, V> =
+  {#internal : Internal__41346355<K, V>; #leaf : Leaf__712614010<K, V>};
+type OfficerContentType__18711598 = {#announcement; #insight; #tip; #video};
+type OfficerContent__873322246 =
+  {
+    body : Text;
+    collegeId : Nat;
+    contentType : OfficerContentType__18711598;
+    id : Nat;
+    officerId : Principal;
+    timestamp : Int;
+    title : Text;
+    videoUrl : ?Text
+  };
+type OfficerProfile__819326944 =
+  {
+    govIdFilename : Text;
+    institution : Text;
+    reviewedAt : ?Timestamp__301639476;
+    submittedAt : Timestamp__301639476;
+    title : Text;
+    userId : UserId__158757552;
+    verificationStatus : OfficerVerificationStatus__217168178
+  };
+type OfficerVerificationStatus__217168178 = {#pending; #rejected; #verified};
+type PortfolioChecklistItem__58647923 =
+  {
+    completed : Bool;
+    itemKey : Text;
+    itemLabel : Text;
+    updatedAt : Timestamp__301639476
+  };
+type SalaryBookmark__1073646333 =
+  {
+    collegeOrRegion : Text;
+    id : Nat;
+    major : Text;
+    medianSalary : ?Nat;
+    notes : Text;
+    savedAt : Timestamp__301639476
+  };
+type SavedCareerPath__937722783 =
+  {
+    careerTitle : Text;
+    description : Text;
+    id : Nat;
+    major : Text;
+    savedAt : Timestamp__301639476
+  };
+type ScholarshipId__496366000 = Nat;
+type ScholarshipTrackedStatus__3645997 =
+  {#awarded; #inProgress; #notStarted; #rejected; #submitted};
+type ScholarshipTracked__228891562 =
+  {
+    appliedDate : ?Text;
+    createdAt : Timestamp__301639476;
+    deadline : ?Text;
+    essayRequired : Bool;
+    name : Text;
+    notes : ?Text;
+    scholarshipId : Nat;
+    status : ScholarshipTrackedStatus__3645997
+  };
+type Scholarship__463055164 =
+  {
+    amount : Nat;
+    applyLink : Text;
+    deadline : Text;
+    eligibilityMajor : ?Text;
+    eligibilityMaxGpa : ?Float;
+    eligibilityMinGpa : ?Float;
+    id : ScholarshipId__496366000;
+    name : Text;
+    requiresFinancialNeed : Bool
+  };
+type StressCheckIn__457873419 =
+  {
+    confidenceLevel : Nat;
+    createdAt : Timestamp__301639476;
+    date : Text;
+    id : Nat;
+    sleepHours : Float;
+    stressLevel : Nat
+  };
+type StudentProfile__499678722 =
+  {
+    actScore : ?Nat;
+    awards : [Award__206221593];
+    dreamCollege : Text;
+    extracurriculars : [Text];
+    financialAidPreference : FinancialAidPreference__729047397;
+    gpa : ?Float;
+    gpaType : GpaType__679962695;
+    intendedMajor : Text;
+    numberOfCourses : Nat;
+    satScore : ?Nat;
+    studyCountry : Text;
+    weightedGpa : ?Float;
+    workExperience : [Text]
+  };
+type SummerProgramStatus__963159346 =
+  {#accepted; #applied; #completed; #interested; #rejected};
+type SummerProgram__870761229 =
+  {
+    createdAt : Timestamp__301639476;
+    date : Text;
+    id : Nat;
+    name : Text;
+    provider : Text;
+    status : SummerProgramStatus__963159346
+  };
+type TaskItem__269548667 =
+  {
+    category : ?Text;
+    completed : Bool;
+    createdAt : Timestamp__301639476;
+    dueDate : ?Text;
+    priority : TaskPriority__976622295;
+    taskId : Nat;
+    title : Text
+  };
+type TaskPriority__976622295 = {#high; #low; #medium};
+type TestScore__622210804 =
+  {
+    createdAt : Timestamp__301639476;
+    date : ?Text;
+    id : Nat;
+    sectionScores : [(Text, Nat)];
+    targetScore : ?Nat;
+    testName : Text
+  };
+type Timestamp__301639476 = Int;
+type UserId__158757552 = Principal;
+type UserRole__1073662873 = {#admin; #guest; #user};
+type VolunteerEntry__428660137 =
+  {
+    activity : Text;
+    createdAt : Timestamp__301639476;
+    date : Text;
+    hours : Float;
+    id : Nat
+  };
+actor {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__222667396<Principal, UserRole__1073662873>
+    };
+  stable achievementsStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<AchievementEntry__451882068>>;
+      var size : Nat__1040412405
+    };
+  stable alumniMessagesStore :
+    {
+      var root :
+        Node__1000929467<Nat, List__560604548<AlumniMessage__248006930>>;
+      var size : Nat__1040412405
+    };
+  stable anxietyStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<AnxietyRating__1022533009>>;
+      var size : Nat__1040412405
+    };
+  stable applicationsStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<ApplicationEntry__283529602>>;
+      var size : Nat__1040412405
+    };
+  stable careerPathStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<SavedCareerPath__937722783>>;
+      var size : Nat__1040412405
+    };
+  stable celebrationStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<CelebrationEvent__260258061>>;
+      var size : Nat__1040412405
+    };
+  stable checklistStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          [DocumentChecklistItem__576112835]>;
+      var size : Nat__1040412405
+    };
+  stable collegesCatalog :
+    {
+      var blockIndex : Nat__1040412405;
+      var blocks : [var [var ?College__183862834]];
+      var elementIndex : Nat__1040412405
+    };
+  stable deadlinesStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552, [CollegeDeadline__1012751481]>;
+      var size : Nat__1040412405
+    };
+  stable essayDraftsStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<EssayDraft__234724396>>;
+      var size : Nat__1040412405
+    };
+  stable geminiKeyState : {var key : Text};
+  stable internshipsStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<InternshipEntry__678313143>>;
+      var size : Nat__1040412405
+    };
+  stable leadershipStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<LeadershipRole__1003394862>>;
+      var size : Nat__1040412405
+    };
+  stable moodStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<MoodCheckIn__645949905>>;
+      var size : Nat__1040412405
+    };
+  stable officerContentStore :
+    {
+      var root : Node__1000929467<Nat, OfficerContent__873322246>;
+      var size : Nat__1040412405
+    };
+  stable officerProfileStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552, OfficerProfile__819326944>;
+      var size : Nat__1040412405
+    };
+  stable officersStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552, AdmissionOfficer__15106951>;
+      var size : Nat__1040412405
+    };
+  stable portalCounters : {var nextContentId : Nat; var nextMessageId : Nat};
+  stable portfolioStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<PortfolioChecklistItem__58647923>>;
+      var size : Nat__1040412405
+    };
+  stable salaryBookmarkStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<SalaryBookmark__1073646333>>;
+      var size : Nat__1040412405
+    };
+  stable scholarshipShortlists :
+    {
+      var root :
+        Node__1000929467<UserId__158757552, [ScholarshipId__496366000]>;
+      var size : Nat__1040412405
+    };
+  stable scholarshipsCatalog :
+    {
+      var blockIndex : Nat__1040412405;
+      var blocks : [var [var ?Scholarship__463055164]];
+      var elementIndex : Nat__1040412405
+    };
+  stable smartPlanningCounters : {var nextId : Nat};
+  stable stressStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<StressCheckIn__457873419>>;
+      var size : Nat__1040412405
+    };
+  stable summerProgramsStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<SummerProgram__870761229>>;
+      var size : Nat__1040412405
+    };
+  stable tasksStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<TaskItem__269548667>>;
+      var size : Nat__1040412405
+    };
+  stable testScoresStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<TestScore__622210804>>;
+      var size : Nat__1040412405
+    };
+  stable trackedScholarshipsStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<ScholarshipTracked__228891562>>;
+      var size : Nat__1040412405
+    };
+  stable trackingCounters : {var nextId : Nat};
+  stable userProfiles :
+    {
+      var root :
+        Node__1000929467<UserId__158757552, StudentProfile__499678722>;
+      var size : Nat__1040412405
+    };
+  stable volunteerStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          List__560604548<VolunteerEntry__428660137>>;
+      var size : Nat__1040412405
+    }
+};

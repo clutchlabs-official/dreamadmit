@@ -1,0 +1,565 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type VolunteerEntry = 
+ record {
+   activity: text;
+   createdAt: Timestamp;
+   date: text;
+   hours: float64;
+   id: nat;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserId = principal;
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type Timestamp = int;
+type TestScore = 
+ record {
+   createdAt: Timestamp;
+   date: opt text;
+   id: nat;
+   sectionScores: vec record {
+                        text;
+                        nat;
+                      };
+   targetScore: opt nat;
+   testName: text;
+ };
+type TaskPriority = 
+ variant {
+   high;
+   low;
+   medium;
+ };
+type TaskItem = 
+ record {
+   category: opt text;
+   completed: bool;
+   createdAt: Timestamp;
+   dueDate: opt text;
+   priority: TaskPriority;
+   taskId: nat;
+   title: text;
+ };
+type SummerProgramStatus = 
+ variant {
+   accepted;
+   applied;
+   completed;
+   interested;
+   rejected;
+ };
+type SummerProgram = 
+ record {
+   createdAt: Timestamp;
+   date: text;
+   id: nat;
+   name: text;
+   provider: text;
+   status: SummerProgramStatus;
+ };
+type StudentProfile = 
+ record {
+   actScore: opt nat;
+   awards: vec Award;
+   dreamCollege: text;
+   extracurriculars: vec text;
+   financialAidPreference: FinancialAidPreference;
+   gpa: opt float64;
+   gpaType: GpaType;
+   intendedMajor: text;
+   numberOfCourses: nat;
+   satScore: opt nat;
+   studyCountry: text;
+   weightedGpa: opt float64;
+   workExperience: vec text;
+ };
+type StressCheckIn = 
+ record {
+   confidenceLevel: nat;
+   createdAt: Timestamp;
+   date: text;
+   id: nat;
+   sleepHours: float64;
+   stressLevel: nat;
+ };
+type ScholarshipTrackedStatus = 
+ variant {
+   awarded;
+   inProgress;
+   notStarted;
+   rejected;
+   submitted;
+ };
+type ScholarshipTracked = 
+ record {
+   appliedDate: opt text;
+   createdAt: Timestamp;
+   deadline: opt text;
+   essayRequired: bool;
+   name: text;
+   notes: opt text;
+   scholarshipId: nat;
+   status: ScholarshipTrackedStatus;
+ };
+type ScholarshipId = nat;
+type ScholarshipFilter = 
+ record {
+   major: opt text;
+   minGpa: opt float64;
+   requiresFinancialNeed: opt bool;
+ };
+type Scholarship = 
+ record {
+   amount: nat;
+   applyLink: text;
+   deadline: text;
+   eligibilityMajor: opt text;
+   eligibilityMaxGpa: opt float64;
+   eligibilityMinGpa: opt float64;
+   id: ScholarshipId;
+   name: text;
+   requiresFinancialNeed: bool;
+ };
+type SavedCareerPath = 
+ record {
+   careerTitle: text;
+   description: text;
+   id: nat;
+   major: text;
+   savedAt: Timestamp;
+ };
+type SalaryBookmark = 
+ record {
+   collegeOrRegion: text;
+   id: nat;
+   major: text;
+   medianSalary: opt nat;
+   notes: text;
+   savedAt: Timestamp;
+ };
+type PortfolioChecklistItem = 
+ record {
+   completed: bool;
+   itemKey: text;
+   itemLabel: text;
+   updatedAt: Timestamp;
+ };
+type OfficerVerificationStatus = 
+ variant {
+   pending;
+   rejected;
+   verified;
+ };
+type OfficerProfile = 
+ record {
+   govIdFilename: text;
+   institution: text;
+   reviewedAt: opt Timestamp;
+   submittedAt: Timestamp;
+   title: text;
+   userId: UserId;
+   verificationStatus: OfficerVerificationStatus;
+ };
+type OfficerContentType = 
+ variant {
+   announcement;
+   insight;
+   tip;
+   video;
+ };
+type OfficerContentInput = 
+ record {
+   body: text;
+   collegeId: nat;
+   contentType: OfficerContentType;
+   title: text;
+   videoUrl: opt text;
+ };
+type OfficerContent = 
+ record {
+   body: text;
+   collegeId: nat;
+   contentType: OfficerContentType;
+   id: nat;
+   officerId: principal;
+   timestamp: int;
+   title: text;
+   videoUrl: opt text;
+ };
+type MoodCheckIn = 
+ record {
+   createdAt: Timestamp;
+   date: text;
+   id: nat;
+   mood: nat;
+   moodEmoji: text;
+   note: text;
+ };
+type LoanCalculationResult = 
+ record {
+   amortizationBreakdown: vec AmortizationEntry;
+   monthlyPayment: float64;
+   totalInterest: float64;
+   totalPayment: float64;
+ };
+type LeadershipRole = 
+ record {
+   createdAt: Timestamp;
+   endDate: opt text;
+   id: nat;
+   impact: text;
+   organization: text;
+   role: text;
+   startDate: text;
+ };
+type InterviewQuestion = 
+ record {
+   category: text;
+   question: text;
+ };
+type InterviewFeedback = 
+ record {
+   answer: text;
+   feedback: text;
+   question: text;
+   score: nat;
+ };
+type InternshipEntry = 
+ record {
+   company: text;
+   createdAt: Timestamp;
+   endDate: opt text;
+   id: nat;
+   role: text;
+   skills: vec text;
+   startDate: text;
+ };
+type GpaType = 
+ variant {
+   unweighted;
+   weighted;
+ };
+type FinancialAidTier = 
+ variant {
+   fullRide;
+   meritOnly;
+   needBased;
+   noAid;
+ };
+type FinancialAidPreference = 
+ variant {
+   full;
+   half;
+   none;
+ };
+type ExtracurricularRecommendation = 
+ record {
+   activity: text;
+   impact: text;
+   reason: text;
+ };
+type EssayReview = 
+ record {
+   feedback: text;
+   grade: text;
+   improvements: vec text;
+   overallScore: nat;
+   strengths: vec text;
+ };
+type EssayDraft = 
+ record {
+   content: text;
+   draftId: nat;
+   tags: vec text;
+   timestamp: Timestamp;
+   title: text;
+   version: nat;
+   wordCount: nat;
+ };
+type DocumentStatus = 
+ variant {
+   inProgress;
+   notStarted;
+   submitted;
+   verified;
+ };
+type DocumentChecklistItem = 
+ record {
+   dueDate: opt int;
+   id: nat;
+   name: text;
+   notes: text;
+   status: DocumentStatus;
+ };
+type DeadlineStatus = 
+ variant {
+   completed;
+   missed;
+   upcoming;
+ };
+type CourseRecommendation = 
+ record {
+   courseName: text;
+   description: text;
+   fieldOfStudy: text;
+   level: text;
+   provider: text;
+   subTopic: text;
+ };
+type CollegeId = nat;
+type CollegeDeadline = 
+ record {
+   collegeId: nat;
+   collegeName: text;
+   deadlineType: text;
+   dueDate: int;
+   notes: text;
+   status: DeadlineStatus;
+ };
+type College = 
+ record {
+   acceptanceRate: float64;
+   country: text;
+   discordUrl: opt text;
+   financialAidTier: FinancialAidTier;
+   housingInfo: text;
+   id: CollegeId;
+   location: text;
+   majorsOffered: vec text;
+   name: text;
+   redditUrl: opt text;
+   tuition: nat;
+   website: text;
+ };
+type CelebrationEvent = 
+ record {
+   createdAt: Timestamp;
+   date: text;
+   description: text;
+   id: nat;
+ };
+type Award = 
+ record {
+   description: text;
+   title: text;
+ };
+type ApplicationStatus = 
+ variant {
+   accepted;
+   applied;
+   deferred;
+   rejected;
+   waitlisted;
+ };
+type ApplicationEntry = 
+ record {
+   collegeName: text;
+   createdAt: Timestamp;
+   deadline: opt text;
+   id: nat;
+   notes: opt text;
+   status: ApplicationStatus;
+   updatedAt: Timestamp;
+ };
+type AnxietyRating = 
+ record {
+   confidenceScore: nat;
+   createdAt: Timestamp;
+   date: text;
+   id: nat;
+   worryScore: nat;
+ };
+type AmortizationEntry = 
+ record {
+   balance: float64;
+   interest: float64;
+   month: nat;
+   "principal": float64;
+ };
+type AlumniMessage = 
+ record {
+   author: principal;
+   authorName: text;
+   collegeId: nat;
+   message: text;
+   messageId: nat;
+   timestamp: int;
+ };
+type AiSuggestion = 
+ record {
+   actionableAdvice: vec text;
+   brainstormingIdeas: vec text;
+   talkingPoints: vec text;
+   targetScoreSuggestions: vec text;
+ };
+type AiMatchScore = 
+ record {
+   collegeId: nat;
+   reasoning: text;
+   score: float64;
+ };
+type AdmissionOfficer = 
+ record {
+   collegeId: nat;
+   name: text;
+   "principal": principal;
+   registeredAt: int;
+ };
+type AchievementEntry = 
+ record {
+   createdAt: Timestamp;
+   date: text;
+   description: text;
+   id: nat;
+   name: text;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  addAchievement: (name: text, date: text, description: text) ->
+   (AchievementEntry);
+  addAnxietyRating: (date: text, confidenceScore: nat, worryScore: nat) ->
+   (AnxietyRating);
+  addCelebrationEvent: (date: text, description: text) -> (CelebrationEvent);
+  addInternship: (company: text, role: text, startDate: text, endDate:
+   opt text, skills: vec text) -> (InternshipEntry);
+  addLeadershipRole: (organization: text, role: text, startDate: text,
+   endDate: opt text, impact: text) -> (LeadershipRole);
+  addMoodCheckIn: (date: text, mood: nat, moodEmoji: text, note: text) ->
+   (MoodCheckIn);
+  addMyApplication: (collegeName: text, status: ApplicationStatus, deadline:
+   opt text, notes: opt text) -> (ApplicationEntry);
+  addMyEssayDraft: (title: text, content: text, tags: vec text) ->
+   (EssayDraft);
+  addMyStressCheckIn: (date: text, stressLevel: nat, sleepHours: float64,
+   confidenceLevel: nat) -> (StressCheckIn);
+  addMyTask: (title: text, dueDate: opt text, priority: TaskPriority,
+   category: opt text) -> (TaskItem);
+  addMyTestScore: (testName: text, sectionScores: vec record {
+                                                        text;
+                                                        nat;
+                                                      }, date: opt text,
+   targetScore: opt nat) -> (TestScore);
+  addMyTrackedScholarship: (name: text, deadline: opt text, essayRequired:
+   bool, notes: opt text) -> (ScholarshipTracked);
+  addSummerProgram: (name: text, provider: text, date: text, status:
+   SummerProgramStatus) -> (SummerProgram);
+  addVolunteerEntry: (activity: text, hours: float64, date: text) ->
+   (VolunteerEntry);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  calculateLoan: (totalCost: float64, expectedAid: float64,
+   annualInterestRate: float64, repaymentYears: nat) ->
+   (LoanCalculationResult) query;
+  deleteAchievement: (id: nat) -> (bool);
+  deleteInternship: (id: nat) -> (bool);
+  deleteLeadershipRole: (id: nat) -> (bool);
+  deleteMyApplication: (entryId: nat) -> (bool);
+  deleteMyEssayDraft: (draftId: nat) -> (bool);
+  deleteMyTask: (taskId: nat) -> (bool);
+  deleteMyTestScore: (scoreId: nat) -> (bool);
+  deleteMyTrackedScholarship: (scholarshipId: nat) -> (bool);
+  deleteSummerProgram: (id: nat) -> (bool);
+  deleteVolunteerEntry: (id: nat) -> (bool);
+  getAchievements: () -> (vec AchievementEntry) query;
+  getAiSuggestions: (profile: StudentProfile) -> (AiSuggestion);
+  getAlumniMessages: (collegeId: nat) -> (vec AlumniMessage) query;
+  getAnxietyRatings: () -> (vec AnxietyRating) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getCelebrationEvents: () -> (vec CelebrationEvent) query;
+  getCollegeMatchScore: (collegeId: nat, collegeName: text, profile:
+   StudentProfile) -> (AiMatchScore);
+  getColleges: () -> (vec College) query;
+  getCollegesByCountry: (country: text) -> (vec College) query;
+  getCollegesByFinancialAid: (tier: FinancialAidTier) -> (vec College) query;
+  getCourseRecommendations: (fieldOfStudy: text, subTopic: text) ->
+   (vec CourseRecommendation);
+  getExtracurricularRecommendations: (profile: StudentProfile) ->
+   (vec ExtracurricularRecommendation);
+  getGeminiApiKeyStatus: () -> (bool) query;
+  getInternships: () -> (vec InternshipEntry) query;
+  getInterviewQuestions: (collegeName: text, major: text) ->
+   (vec InterviewQuestion);
+  getLeadershipRoles: () -> (vec LeadershipRole) query;
+  getMoodCheckIns: () -> (vec MoodCheckIn) query;
+  getMyDeadlines: () -> (vec CollegeDeadline) query;
+  getMyDocumentChecklist: () -> (vec DocumentChecklistItem) query;
+  getMyOfficerProfile: () -> (opt AdmissionOfficer) query;
+  getMyScholarshipShortlist: () -> (vec ScholarshipId) query;
+  getOfficerContent: (collegeId: nat) -> (vec OfficerContent) query;
+  getOfficerProfile: () -> (opt OfficerProfile) query;
+  getPortfolioChecklist: () -> (vec PortfolioChecklistItem) query;
+  getSalaryBookmarks: () -> (vec SalaryBookmark) query;
+  getSavedCareerPaths: () -> (vec SavedCareerPath) query;
+  getScholarships: () -> (vec Scholarship) query;
+  getStudentProfile: () -> (opt StudentProfile) query;
+  getSummerPrograms: () -> (vec SummerProgram) query;
+  getVolunteerEntries: () -> (vec VolunteerEntry) query;
+  isCallerAdmin: () -> (bool) query;
+  listMyApplications: () -> (vec ApplicationEntry) query;
+  listMyEssayDrafts: () -> (vec EssayDraft) query;
+  listMyStressCheckIns: () -> (vec StressCheckIn) query;
+  listMyTasks: () -> (vec TaskItem) query;
+  listMyTestScores: () -> (vec TestScore) query;
+  listMyTrackedScholarships: () -> (vec ScholarshipTracked) query;
+  listPendingOfficers: () -> (vec OfficerProfile) query;
+  postAlumniMessage: (collegeId: nat, message: text) -> ();
+  postOfficerContent: (content: OfficerContentInput) -> (nat);
+  queryScholarships: (filter: ScholarshipFilter) -> (vec Scholarship) query;
+  registerOfficer: (collegeId: nat, name: text) -> ();
+  removeSalaryBookmark: (id: nat) -> (bool);
+  removeSavedCareerPath: (id: nat) -> (bool);
+  reviewEssay: (essay: text, collegeName: text) -> (EssayReview);
+  saveCareerPath: (major: text, careerTitle: text, description: text) ->
+   (SavedCareerPath);
+  saveMyDeadlines: (deadlines: vec CollegeDeadline) -> ();
+  saveMyDocumentChecklist: (items: vec DocumentChecklistItem) -> ();
+  saveMyScholarshipShortlist: (ids: vec ScholarshipId) -> ();
+  saveSalaryBookmark: (major: text, collegeOrRegion: text, medianSalary:
+   opt nat, notes: text) -> (SalaryBookmark);
+  saveStudentProfile: (profile: StudentProfile) -> ();
+  setGeminiApiKey: (key: text) -> ();
+  submitInterviewAnswer: (question: text, answer: text, collegeName: 
+   text) -> (InterviewFeedback);
+  submitOfficerProfile: (institution: text, title: text, govIdFilename:
+   text) -> (OfficerProfile);
+  toggleMyTask: (taskId: nat) -> (opt TaskItem);
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  updateMyApplication: (entryId: nat, status: opt ApplicationStatus,
+   deadline: opt text, notes: opt text) -> (opt ApplicationEntry);
+  updateMyEssayDraft: (draftId: nat, title: opt text, content: opt text,
+   tags: opt vec text) -> (opt EssayDraft);
+  updateMyTestScore: (scoreId: nat, sectionScores:
+   opt vec record {
+             text;
+             nat;
+           }, date: opt text, targetScore: opt nat) -> (opt TestScore);
+  updateMyTrackedScholarship: (scholarshipId: nat, status:
+   opt ScholarshipTrackedStatus, appliedDate: opt text, notes: opt text) ->
+   (opt ScholarshipTracked);
+  updateOfficerVerificationStatus: (targetUser: UserId, status:
+   OfficerVerificationStatus) -> (bool);
+  upsertPortfolioChecklist: (items: vec PortfolioChecklistItem) -> ();
+}
